@@ -13,7 +13,7 @@ fast-message:
   connection-timeout: 5000
 ```
 
-#### 项目继承
+#### 启动配置
 ```java
 // 开启消息客户端
 @EnableMessageClient
