@@ -1,5 +1,16 @@
 ### 使用方法
 
+#### 添加Maven依赖
+```xml
+<dependencies>
+    <dependency>
+        <groupId>top.roothk.message</groupId>
+        <artifactId>client</artifactId>
+        <version>0.0.1</version>
+    </dependency>
+</dependencies>
+```
+
 #### 项目配置
 ```yaml
 fast-message:
