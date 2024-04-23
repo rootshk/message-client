@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
@@ -36,7 +37,7 @@ public class MessageService {
         }
     }
 
-    public String sendExec(String channel, String message, String remark) {
+    public String sendExec(String channel, String message, String remark) throws UnsupportedEncodingException {
         log.debug("Message Send Client Request [Host: {}] [AuthKey: {}] [Channel: {}] [Message: {}] [Remark: {}]",
                 serverProperties.getHost(), serverProperties.getAuthKey(), channel, message, remark);
         long l = System.currentTimeMillis();
@@ -46,9 +47,9 @@ public class MessageService {
                 .timeout(serverProperties.getTimeout())
                 .connectionTimeout(serverProperties.getConnectionTimeout())
                 .header(AUTH_KEY_HEADER, serverProperties.getAuthKey())
-                .query(CHANNEL_KEY_QUERY, channel == null ? "" : URLEncoder.encode(channel, StandardCharsets.UTF_8))
-                .query(MESSAGE_KEY_QUERY, message == null ? "" : URLEncoder.encode(message, StandardCharsets.UTF_8))
-                .query(REMARK_KEY_QUERY, remark == null ? "" : URLEncoder.encode(remark, StandardCharsets.UTF_8))
+                .query(CHANNEL_KEY_QUERY, channel == null ? "" : URLEncoder.encode(channel, "UTF-8"))
+                .query(MESSAGE_KEY_QUERY, message == null ? "" : URLEncoder.encode(message, "UTF-8"))
+                .query(REMARK_KEY_QUERY, remark == null ? "" : URLEncoder.encode(remark, "UTF-8"))
                 .charset(CHARSET)
                 .send();
         String result = response.charset(CHARSET).bodyText();

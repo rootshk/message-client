@@ -1,5 +1,10 @@
 ### 使用方法
 
+#### 发布Maven仓库
+```
+mvn clean deploy -P release
+```
+
 #### 添加Maven依赖
 ```xml
 <dependencies>
