@@ -31,7 +31,7 @@ public class MessageService {
         try {
             return sendExec(channel, message, remark);
         } catch (Exception e) {
-            log.error("Message Send Client Error", e);
+            log.trace("Message Send Client Error", e);
             return "-1";
         }
     }
