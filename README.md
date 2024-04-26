@@ -2,7 +2,7 @@
 
 #### 发布Maven仓库
 ```
-mvn clean deploy -P release
+mvn clean deploy -P release -Dgpg.passphrase=xxxx
 ```
 
 #### 添加Maven依赖
