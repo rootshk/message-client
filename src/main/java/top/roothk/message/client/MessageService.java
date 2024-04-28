@@ -190,7 +190,7 @@ public class MessageService {
         }
     }
 
-    public String sendExec(String level, String channel, String title, String subTitle, String message, String remark, Boolean only) {
+    public String sendExec(String level, String channel, String title, String subTitle, String message, String remark, Boolean only) throws UnsupportedEncodingException {
         log.debug("Message Send Client Request [Host: {}] [AuthKey: {}] [Channel: {}] [Message: {}] [Remark: {}]",
                 serverProperties.getHost(), serverProperties.getAuthKey(), channel, message, remark);
         long l = System.currentTimeMillis();
@@ -200,12 +200,12 @@ public class MessageService {
                 .timeout(serverProperties.getTimeout())
                 .connectionTimeout(serverProperties.getConnectionTimeout())
                 .header(AUTH_KEY_HEADER, serverProperties.getAuthKey())
-                .query(LEVEL_KEY_QUERY, level == null ? "" : URLEncoder.encode(level, StandardCharsets.UTF_8))
-                .query(TITLE_KEY_QUERY, title == null ? "" : URLEncoder.encode(title, StandardCharsets.UTF_8))
-                .query(SUB_TITLE_KEY_QUERY, subTitle == null ? "" : URLEncoder.encode(subTitle, StandardCharsets.UTF_8))
-                .query(CHANNEL_KEY_QUERY, channel == null ? "" : URLEncoder.encode(channel, StandardCharsets.UTF_8))
-                .query(MESSAGE_KEY_QUERY, message == null ? "" : URLEncoder.encode(message, StandardCharsets.UTF_8))
-                .query(REMARK_KEY_QUERY, remark == null ? "" : URLEncoder.encode(remark, StandardCharsets.UTF_8))
+                .query(LEVEL_KEY_QUERY, level == null ? "" : URLEncoder.encode(level, "UTF-8"))
+                .query(TITLE_KEY_QUERY, title == null ? "" : URLEncoder.encode(title, "UTF-8"))
+                .query(SUB_TITLE_KEY_QUERY, subTitle == null ? "" : URLEncoder.encode(subTitle, "UTF-8"))
+                .query(CHANNEL_KEY_QUERY, channel == null ? "" : URLEncoder.encode(channel, "UTF-8"))
+                .query(MESSAGE_KEY_QUERY, message == null ? "" : URLEncoder.encode(message, "UTF-8"))
+                .query(REMARK_KEY_QUERY, remark == null ? "" : URLEncoder.encode(remark, "UTF-8"))
                 .query(ONLY_KEY_QUERY, only)
                 .charset(CHARSET)
                 .send();
